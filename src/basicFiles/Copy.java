@@ -1,4 +1,4 @@
-package basicFIles;
+package basicFiles;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -27,6 +27,11 @@ public class Copy {
 		
 		Scanner userInput = new Scanner(System.in);
 		
+		if (args.length == 0) {
+			System.out.print("No files supplied");
+			return;
+		}
+		
 		String firstFile = args[0];
 		String secondFile = args[1];
 		
@@ -47,6 +52,7 @@ public class Copy {
 				System.out.println("Would you like to overwrite the file " + secondFile + " ? Y or N:");
 				String userChoice = userInput.next().toLowerCase();
 				if (userChoice.charAt(0) == 'n') {
+					System.out.print("Copy aborted");
 					return;
 				}
 			}

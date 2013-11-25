@@ -1,4 +1,4 @@
-package basicFIles;
+package basicFiles;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -15,28 +15,33 @@ import java.util.Scanner;
  *
  */
 public class Cat {
-
+	
+	/**
+	 * @param args Strings. file names to read
+	 */
 	public static void main(String[] args) {
-		System.out.print("Please enter a file to read: ");
-		Scanner userIn = new Scanner(System.in);
-		String userFile = userIn.next();
 
-		File file = new File(userFile);
-		BufferedReader fileReader = null;
-		try {
-			 fileReader = new BufferedReader(new FileReader(file));
-			String line;
-			while ((line = fileReader.readLine()) != null) {
-				System.out.println(line);
+
+		for (int i = 0; i < args.length; i ++) {
+			System.out.println(args[i] + " > ");
+			File file = new File(args[i]);
+			BufferedReader fileReader = null;
+			try {
+				fileReader = new BufferedReader(new FileReader(file));
+				String line;
+				while ((line = fileReader.readLine()) != null) {
+					System.out.println(line);
+				}
+				System.out.println();
+			} 
+			catch (FileNotFoundException e) {
+				System.out.println("File " + file + " does not exist in the current directory");
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				closeReader(fileReader);
 			}
 
-		} 
-		catch (FileNotFoundException e) {
-			System.out.println("File " + file + " does not exist in the current directory");
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			closeReader(fileReader);
 		}
 
 	}

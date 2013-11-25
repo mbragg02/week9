@@ -1,4 +1,4 @@
-package basicFIles;
+package basicFiles;
 
 import java.io.File;
 import java.util.Scanner;

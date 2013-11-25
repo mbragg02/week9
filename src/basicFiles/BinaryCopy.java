@@ -27,27 +27,25 @@ public class BinaryCopy {
 	public static void main(String[] args) {
 		Scanner userInput = new Scanner(System.in);
 
-		
-		
 		if (args.length != 2) {
-			System.out.print("Please supply two .class file names");
+			System.out.print("Please supply two binary files. e.g .class or .exe file names");
 			return;
 		} else {
 			System.out.println(args[0]);
 			System.out.println(args[1]);
 		}
-		
+
 		String firstFile = args[0];
 		String secondFile = args[1];
-		
+
 		File file = new File(firstFile);
 		File writeFile = new File(secondFile);
-		
+
 		boolean writeFileExists = writeFile.isFile();
-		
+
 		FileInputStream fileStream = null;
 		FileOutputStream outStream = null;
-		
+
 		try {
 			fileStream = new FileInputStream(file);
 			outStream = new FileOutputStream(writeFile);
@@ -56,32 +54,27 @@ public class BinaryCopy {
 				System.out.println("Would you like to overwrite the file " + secondFile + " ? Y or N:");
 				String userChoice = userInput.next().toLowerCase();
 				if (userChoice.charAt(0) == 'n') {
-					System.out.print("Copy aborted");
+					System.out.print("Copy Aborted");
 					return;
 				}
 			}
-			
-			
+
+
 			int val = 0;
 			int bufferSize = 1024;
 			byte[] buffer = new byte[bufferSize];
 			while (val != -1) {
 				val = fileStream.read(buffer, 0, bufferSize);
-			
-				
+
 				if (val == bufferSize) {
 					outStream.write(buffer);
-				} 
-				
-				if (val < bufferSize ) {
-					if (val == -1) {
-						break;
-					}
+				} else {
 					outStream.write(buffer, 0, val);
+					break;
 				}
 			}
-			
-			System.out.println(firstFile + " copied to " + secondFile + " successfully");
+
+			System.out.println("." + File.separator + firstFile + " copied to " + "." + File.separator + secondFile + " successfully");
 
 		} 
 		catch (FileNotFoundException e) {
@@ -94,6 +87,12 @@ public class BinaryCopy {
 
 	}
 	
+	
+	/**
+	 * Closes open input and output streams.
+	 * @param fileStream
+	 * @param outStream
+	 */
 	private static void closeReader(FileInputStream fileStream, FileOutputStream outStream) { 
 		try {
 			if (fileStream != null) { 
@@ -101,10 +100,8 @@ public class BinaryCopy {
 			}
 			if (outStream != null) {
 				outStream.close();
-
 			}
 		} catch (IOException ex) {
-
 			ex.printStackTrace();
 		}
 	}

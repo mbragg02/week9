@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.Scanner;
 
 /**
  * 3a) Write a program that takes a name from the user at the command line. If a file with that name exists, 

@@ -86,16 +86,16 @@ public class CopyDirectories {
 		}
 	}
 	
-	private static void listAll() {
-		String curr = ".";
-		File currDirectory = new File(curr);
-		String[] fileList = currDirectory.list();
-
-		for (String f : fileList) {
-			System.out.println(f);
-		}
-
-	}
+//	private static void listAll() {
+//		String curr = ".";
+//		File currDirectory = new File(curr);
+//		String[] fileList = currDirectory.list();
+//
+//		for (String f : fileList) {
+//			System.out.println(f);
+//		}
+//
+//	}
 
 }
 

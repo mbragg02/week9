@@ -23,6 +23,7 @@ public class Temperatures {
 		String tempretures = "tempretures.txt";
 		File file = new File(tempretures);
 		BufferedReader fileReader = null;
+		
 		List<Double> totalAverage = new ArrayList<Double>();
 		List<Double> lineAverage = null;
 
@@ -32,6 +33,7 @@ public class Temperatures {
 			while ((line = fileReader.readLine()) != null) {
 				lineAverage = new ArrayList<Double>();
 				String[] lineResult = line.split(",");
+				
 				for (int i = 0; i < lineResult.length; i ++) {
 					double value = Integer.parseInt(lineResult[i].trim());
 					lineAverage.add(value);
@@ -42,8 +44,6 @@ public class Temperatures {
 			}
 			
 			System.out.printf("Total everage for file %.2f", average(totalAverage));
-			
-
 		} 
 		catch (FileNotFoundException e) {
 			System.out.println("File " + file + " does not exist in the current directory");
@@ -54,17 +54,26 @@ public class Temperatures {
 		}
 	}
 	
+	
+	/**
+	 * Method to calculate the average of a supplied list of Doubles.
+	 * @param list. List<Double> containing the values.
+	 * @return double. The Average
+	 */
 	private static double average(List<Double> list) {
 		double result = 0.0;
 		int number = list.size();
 		for (int i = 0; i < number; i ++) {
 			result += list.get(i);
 		}
-		result = 1d * result / number;
-		
-		return result;
+		return result = 1d * result / number;
 	}
 	
+	
+	/**
+	 * Method to close a file reader.
+	 * @param reader. The Reader to close.
+	 */
 	private static void closeReader(Reader reader) { 
 		try {
 			if (reader != null) { 
